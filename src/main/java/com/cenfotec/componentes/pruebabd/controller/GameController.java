@@ -5,13 +5,12 @@ import com.cenfotec.componentes.pruebabd.domain.Game;
 import com.cenfotec.componentes.pruebabd.repo.GameRepository;
 import com.cenfotec.componentes.pruebabd.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 public class GameController {
 
     @Autowired
