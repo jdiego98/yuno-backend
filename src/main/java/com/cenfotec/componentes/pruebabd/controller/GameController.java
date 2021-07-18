@@ -2,24 +2,35 @@ package com.cenfotec.componentes.pruebabd.controller;
 
 
 import com.cenfotec.componentes.pruebabd.domain.Game;
-import com.cenfotec.componentes.pruebabd.domain.Prueba;
-import com.cenfotec.componentes.pruebabd.services.GameService;
+import com.cenfotec.componentes.pruebabd.repo.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-@Controller
+@RestController
 public class GameController {
 
     @Autowired
-    GameService gameService;
+    private GameRepository repository;
 
-// Probar con RestController
-
-    @GetMapping("/game")
+    @GetMapping("/games")
     public Flux<Game> getAllGames() {
-        return gameService.findAll();
+        final Flux<Game> findAllByFlux = repository.findAll();
+        return findAllByFlux;
     }
 
+    @GetMapping("/games/{id}")
+    public Game getGameById(@PathVariable(value = "id") String gameId) {
+        final Mono<Game> findByIdMono = repository.findById(gameId);
+        return findByIdMono.block();
+    }
+
+    @GetMapping("/games/user/{personId}")
+    public Flux<Game> getAllGamesByUser(@PathVariable(value = "personId") String personId) {
+        final Flux<Game> findByUser = repository.getAllGamesByUsers(personId);
+        return findByUser;
+    }
 }
