@@ -23,6 +23,21 @@ public class GameService {
         return this.gameRepository.findAll();
     }
 
+    public Mono<Game> findById(String gameId) {
+        return this.gameRepository.findById(gameId);
+    }
+
+    public Flux<Game> getAllGamesByUsers(String personId){
+        return this.gameRepository.getAllGamesByUsers(personId);
+    }
+
+    public Flux<Game> getAllGamesByCategory(String categoryName){
+        return this.gameRepository.getAllGamesByCategory(categoryName);
+    }
+
+    public Flux<Game> getAllGamesByPlatform(String platformName){
+        return this.gameRepository.getAllGamesByPlatform(platformName);
+    }
 }
 
 
