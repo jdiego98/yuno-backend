@@ -12,4 +12,10 @@ public interface GameRepository extends ReactiveCosmosRepository<Game, String> {
 
     @Query(value = "SELECT * FROM Games g WHERE g.personId = @personId")
     Flux<Game> getAllGamesByUsers(@Param("personId") String personId);
+
+    @Query(value = "SELECT g.id FROM Games g JOIN category IN g.categories WHERE category.name = @categoryName")
+    Flux<Game> getAllGamesByCategory(@Param("categoryName") String categoryName);
+
+    @Query(value = "SELECT g.id FROM Games g JOIN platform IN g.platforms WHERE platform.name = @platformName")
+    Flux<Game> getAllGamesByPlatform(@Param("platformName") String platformName);
 }

@@ -33,4 +33,16 @@ public class GameController {
         final Flux<Game> findByUser = repository.getAllGamesByUsers(personId);
         return findByUser;
     }
+
+    @GetMapping("/games/category/{categoryName}")
+    public Flux<Game> getAllGamesByCategory(@PathVariable(value = "categoryName") String categoryName) {
+        final Flux<Game> findByCategory = repository.getAllGamesByCategory(categoryName);
+        return findByCategory;
+    }
+
+    @GetMapping("/games/platform/{platformName}")
+    public Flux<Game> getAllGamesByPlatform(@PathVariable(value = "platformName") String platformName) {
+        final Flux<Game> findByPlatform = repository.getAllGamesByPlatform(platformName);
+        return findByPlatform;
+    }
 }
