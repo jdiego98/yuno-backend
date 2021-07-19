@@ -2,7 +2,6 @@ package com.cenfotec.componentes.pruebabd.controller;
 
 
 import com.cenfotec.componentes.pruebabd.domain.Game;
-import com.cenfotec.componentes.pruebabd.repo.GameRepository;
 import com.cenfotec.componentes.pruebabd.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -39,5 +38,11 @@ public class GameController {
     @GetMapping("/games/platform/{platformName}")
     public Flux<Game> getAllGamesByPlatform(@PathVariable(value = "platformName") String platformName) {
         return service.getAllGamesByPlatform(platformName);
+    }
+
+    @PostMapping(value = "/games/saveGame")
+    public Mono<Game> createNewGame(@RequestBody Game newGame) {
+        final Mono<Game> insertedGameMono  = service.createNewGame(newGame);
+        return insertedGameMono;
     }
 }
