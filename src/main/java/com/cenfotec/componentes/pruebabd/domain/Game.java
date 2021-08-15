@@ -30,7 +30,17 @@ public class Game {
 
     }
 
-    public Game(String id, String gameId, String type, String personId, String name, String description, String price, String size, String cover, String picture, ArrayList<Platform> platforms, ArrayList<Category> categories) {
+    public Game(@JsonProperty("id") String id, @JsonProperty("gameId") String gameId,
+                @JsonProperty("type") String type,
+                @JsonProperty("personId") String personId,
+                @JsonProperty("name") String name,
+                @JsonProperty("description") String description,
+                @JsonProperty("price") String price,
+                @JsonProperty("size") String size,
+                @JsonProperty("cover") String cover,
+                @JsonProperty("picture") String picture,
+                @JsonProperty("platforms") ArrayList<Platform> platforms,
+                @JsonProperty("categories") ArrayList<Category> categories) {
         this.id = id;
         this.gameId = gameId;
         this.type = type;

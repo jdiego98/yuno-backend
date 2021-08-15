@@ -38,6 +38,20 @@ public class GameService {
     public Flux<Game> getAllGamesByPlatform(String platformName){
         return this.gameRepository.getAllGamesByPlatform(platformName);
     }
+
+    public Mono<Game> createNewGame(Game newGame) {
+        final Mono<Game> lastInsertedId = this.gameRepository.getLatsInsertedGameId();
+        final Game lastInsertedGame = lastInsertedId.block();
+        String numberOnly= lastInsertedGame.getId().replaceAll("[^0-9]", "");
+        int consutive = Integer.parseInt(numberOnly);
+
+        consutive++;
+
+        newGame.setId("game-" + consutive);
+        newGame.setGameId("game-" + consutive);
+
+        return this.gameRepository.save(newGame);
+    }
 }
 
 
