@@ -45,4 +45,9 @@ public class GameController {
         final Mono<Game> insertedGameMono  = service.createNewGame(newGame);
         return insertedGameMono;
     }
+
+    @DeleteMapping(value="/games")
+    public Mono<Void> deleteGame(@RequestBody Game deleteGame){
+        return service.deleteGame(deleteGame);
+    }
 }
