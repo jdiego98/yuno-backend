@@ -9,7 +9,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.DELETE})
 public class GameController {
 
     @Autowired
@@ -46,8 +46,8 @@ public class GameController {
         return insertedGameMono;
     }
 
-    @DeleteMapping(value="/games")
-    public Mono<Void> deleteGame(@RequestBody Game deleteGame){
-        return service.deleteGame(deleteGame);
+    @DeleteMapping(value="/games/{id}")
+    public Mono<Void> deleteGame(@PathVariable(value = "id") String gameId){
+        return service.deleteGame(gameId);
     }
 }

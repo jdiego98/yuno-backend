@@ -53,8 +53,9 @@ public class GameService {
         return this.gameRepository.save(newGame);
     }
 
-    public Mono<Void> deleteGame(Game game){
-        return this.gameRepository.delete(game);
+    public Mono<Void> deleteGame(String gameId){
+        Game deleteGame  = this.findById(gameId).block();
+        return this.gameRepository.delete(deleteGame);
     }
 }
 

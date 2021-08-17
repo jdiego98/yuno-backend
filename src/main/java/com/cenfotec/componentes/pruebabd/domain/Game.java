@@ -152,12 +152,12 @@ public class Game {
                 ", personId='" + personId + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", price=" + price +
+                ", price='" + price + '\'' +
                 ", size='" + size + '\'' +
                 ", cover='" + cover + '\'' +
                 ", picture='" + picture + '\'' +
-                ", platforms=" + platforms.toString() +
-                ", categories=" + categories.toString() +
+                ", platforms=" + platforms +
+                ", categories=" + categories +
                 '}';
     }
 }
